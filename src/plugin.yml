@@ -1,0 +1,7 @@
+name: Svh
+version: 0.1
+main: com.ventura11.plugin.Main
+description: SpeedRunner Vs Hunter
+author: boys4Code
+commands:
+  svh:

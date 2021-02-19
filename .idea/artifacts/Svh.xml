@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Svh">
+    <output-path>$USER_HOME$/Desktop/Spigot 1.12.2 Plugin/plugins</output-path>
+    <root id="archive" name="Svh.jar">
+      <element id="module-output" name="Svh" />
+    </root>
+  </artifact>
+</component>
