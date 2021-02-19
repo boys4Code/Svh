@@ -1,4 +1,4 @@
-package com.boys4code.plugin;
+package com.ventura11.plugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
