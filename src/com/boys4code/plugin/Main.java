@@ -1,4 +1,4 @@
-package com.ventura11.plugin;
+package com.boys4code.plugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -23,7 +23,6 @@ public class Main extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
     }
 
-    //Hiba. Kifagy
 
     //HashMap<Player, String> game = new HashMap<>();
     //game.put(player, "teszt");
@@ -49,20 +48,20 @@ public class Main extends JavaPlugin implements Listener {
         if (cmd.getName().equals("svh")){
             if (sender instanceof Player){
                 if(args.length <1) {
-                    player.sendMessage("1"); // Ha csak annyit ír be, hogy /svh
+                    player.sendMessage("/svh <join|start|reset> <s|h>"); // Ha csak annyit ír be, hogy /svh
                 }else if(args[0].equalsIgnoreCase("join")){
                     if(args[1].equalsIgnoreCase("s")){
                         speedrunner = player;
-                        player.sendMessage("2"); // Csatlakozott a speedrunner csapatba
+                        player.sendMessage("Sikeresen SpeedRunner lettél."); // Csatlakozott a speedrunner csapatba
                     }else if (args[1].equalsIgnoreCase("h")){
                         hunters.add(player);
-                        player.sendMessage("3"); // Csatlakozott a hunter csapatba
+                        player.sendMessage("Sikeresen beléptél a Hunter csapatba."); // Csatlakozott a hunter csapatba
                     }
                 }else if (args[0].equalsIgnoreCase("start")){
                     if(speedrunner !=null){ //Ezen még tökéletesíteni kell!
                         if(hunters.toArray().length >= 1){
-                            Bukkit.broadcastMessage("4");
-                            for(int i = 0; i < hunters.toArray().length; i++){
+                            Bukkit.broadcastMessage("A játék elindúlt!");
+                            for(int i = 0; i < hunters.toArray().length; i++) {
                                 Player hunter = hunters.get(i);
                                 ItemStack compass = new ItemStack(Material.COMPASS);
                                 hunter.getInventory().addItem(compass);
@@ -74,15 +73,15 @@ public class Main extends JavaPlugin implements Listener {
                                 }
                             }, 0L, 100L);
                         }else{
-                            player.sendMessage("5");
+                            player.sendMessage("Nincs elég játékos a Hunter csapatban!");
                         }
                     }else{
-                        player.sendMessage("6");
+                        player.sendMessage("Nincs elég játékos a SpeedRunner csapatban!");
                     }
                 }else if(args[0].equalsIgnoreCase("reset")){
                     hunters.clear();
                     speedrunner = null;
-                    player.sendMessage("");
+                    player.sendMessage("Sikeresen alaphelyzetbe lett állítva.");
                 }
             }
         }
@@ -98,7 +97,7 @@ public class Main extends JavaPlugin implements Listener {
             }
         }else{
             Bukkit.getScheduler().cancelTask(db);
-            Bukkit.broadcastMessage("7");
+            Bukkit.broadcastMessage("A játék vége, mert meghalt a SpeedRunner.");
         }
     }
 }
