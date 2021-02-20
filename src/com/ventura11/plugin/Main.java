@@ -4,28 +4,27 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        System.out.println("");
+        System.out.println("Sikeresen elindúlt a plugin.");
         Bukkit.getPluginManager().registerEvents(this, this);
     }
 
-
-    //HashMap<Player, String> game = new HashMap<>();
-    //game.put(player, "teszt");
     List<Player> hunters = new ArrayList<Player>();
     Player speedrunner;
     boolean game;
@@ -40,6 +39,14 @@ public class Main extends JavaPlugin implements Listener {
             }
         }
     }
+    @EventHandler
+    public void onEnderdragonDead(EntityDeathEvent e){
+        if(e.getEntityType() == EntityType.ENDER_DRAGON){
+            Bukkit.broadcastMessage("A játék véget ért!");
+            game = false;
+        }
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
